@@ -9,8 +9,18 @@ export default {
     Chart
   },
   props: {
+    // 设置进度条最大值
+    unit: {
+      type: String,
+      default: ''
+    },
+    max: {
+      type: Number,
+      default: 100
+    },
+    // 直接输入进度
     data: {
-      type: Array,
+      type: Number,
       required: true
     },
     background: {
@@ -23,7 +33,7 @@ export default {
     },   // 进度条颜色
     width: {
       type: Number,
-      default: 20
+      default: 10
     },  // 圆环的宽度
   },
   mounted() {
@@ -37,11 +47,15 @@ export default {
   },
   methods: {
     setOption(data) {
+      const _this = this
       this.option = {
         series: [
           {
             type: 'gauge',
             startAngle: 225,
+            radius: '100%',
+            min: 0,
+            max: this.max,
             endAngle: -45,
             pointer: {
               show: false,
@@ -74,7 +88,33 @@ export default {
             title: {
               show: false
             },
-            data
+            data: [{
+              value: data
+            }],
+            detail: {
+              offsetCenter: [0, 0],
+              formatter(val) {
+                const unit = _this.unit
+                const arr = [
+                  `{a|${val}}`,
+                  `{b|${unit}}`,
+                ];
+                return arr.join('');
+              },
+              rich: {
+                'a': {
+                  color: 'red',
+                  fontSize: 30,
+                  fontWeight: 'bold',
+                  padding: [0, 4, 0, 0]
+                },
+                'b': {
+                  color: '#fff',
+                  fontSize: 12,
+                  padding: [10, 0, 0, 0]
+                }
+              }
+            },
           }
         ]
       }
