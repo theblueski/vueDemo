@@ -40,6 +40,10 @@ export default {
       default() {
         return []
       }
+    },
+    unit: {
+      type: String,
+      default: ''
     }
   },
   mounted() {
@@ -120,7 +124,19 @@ export default {
         },
         axisLabel: {
           show: false
-        }
+        },
+        name: this.unit,
+        nameTextStyle: {
+          color: '#fff'
+        },
+        offset: -10,
+        nameGap: 8, // 名字位置
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '3ccc',
+          },
+        },
       } : {
         type: 'category',
         data: intervals,
@@ -129,8 +145,13 @@ export default {
         },
         axisLine: {
           lineStyle: {
-            color: '3ccc',
+            color: '#ccc',
           },
+        },
+        axisLabel: {
+          show: true,
+          color: '#333',
+          overflow: 'truncate'
         },
       }
 
@@ -160,8 +181,20 @@ export default {
           show: false
         },
         axisLabel: {
-          show: false
-        }
+          show: false,
+        },
+        name: this.unit,
+        nameTextStyle: {
+          color: '#333'
+        },
+        offset: 0,
+        nameGap: 8, // 名字位置
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#ccc',
+          },
+        },
       }
       return {
         tooltip: {

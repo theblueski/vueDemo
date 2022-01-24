@@ -4,7 +4,7 @@
 <!--      <DashBoard unit="个" :data="40"/>-->
 <!--    </div>-->
     <div style="width: 600px;height: 400px;">
-      <BarsChart :colors="['red', 'pink']" :data="lineData" />
+      <BarsChart :vertical="true" unit="元" :colors="['red', 'pink']" :data="lineData" />
     </div>
 <!--    <div class="linerLine"></div>-->
 <!--    <div class="noover"></div>-->
