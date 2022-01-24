@@ -34,6 +34,13 @@ export default {
       type: Number,
       default: 20
     },  // 圆环的宽度
+    // 柱颜色列表
+    colors: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
   },
   mounted() {
     this.option = this.getOptions(this.data)
@@ -77,14 +84,21 @@ export default {
           type: 'bar',
           barMaxWidth: this.width,
           barGap: 0,
+          itemStyle: {
+            color: this.colors[0]
+          }
         }]
       }
       if(valueMap instanceof  Object) {
-        return Object.keys(valueMap).map(i => ({
+        return Object.keys(valueMap).map((i,index) => ({
           data: valueMap[i],
+          name: i,
           type: 'bar',
           barMaxWidth: this.width,
           barGap: 0,
+          itemStyle: {
+            color: this.colors[index]
+          }
         }))
       }
     },
@@ -99,10 +113,14 @@ export default {
       const yAxis = this.vertical ? {
         type: 'value',
         splitLine: {
-          lineStyle: {
-            type: 'dashed',
-          },
+          show: false
         },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          show: false
+        }
       } : {
         type: 'category',
         data: intervals,
@@ -111,7 +129,6 @@ export default {
         },
         axisLine: {
           lineStyle: {
-            type: 'dashed',
             color: '3ccc',
           },
         },
@@ -131,24 +148,29 @@ export default {
         },
         axisLine: {
           lineStyle: {
-            type: 'dashed',
             color: '3ccc',
           },
         },
       } : {
         type: 'value',
         splitLine: {
-          lineStyle: {
-            type: 'dashed',
-          },
+          show: false
         },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          show: false
+        }
       }
       return {
         legend: {
-          icon: 'circle',
+          icon: 'roundRect',
           itemHeight: 10,
           itemGap: 20,
           top: 20,
+          right: 20
+          // align: 'auto' // 控制图标和icon位置
         },
         grid: {
           top: '16%',

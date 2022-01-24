@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <div class="infoWrapper">
-      <DashBoard unit="个" :data="40"/>
+<!--    <div class="infoWrapper">-->
+<!--      <DashBoard unit="个" :data="40"/>-->
+<!--    </div>-->
+    <div style="width: 600px;height: 400px;">
+      <BarsChart :colors="['red', 'pink']" :data="lineData" />
     </div>
-<!--    <BarsChart  :data="lineData" />-->
 <!--    <div class="linerLine"></div>-->
 <!--    <div class="noover"></div>-->
 <!--    <div class="outer ">-->
