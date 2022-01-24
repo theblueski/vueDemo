@@ -164,6 +164,9 @@ export default {
         }
       }
       return {
+        tooltip: {
+          trigger: 'axis',
+        },
         legend: {
           icon: 'roundRect',
           itemHeight: 10,
