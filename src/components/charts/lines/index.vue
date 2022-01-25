@@ -30,6 +30,16 @@ export default {
       type: Number,
       default: 20
     },  // 圆环的宽度
+    unit: {
+      type: String,
+      default: ''
+    },
+    colors: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
   },
   mounted() {
     this.option = this.getOptions(this.data)
@@ -75,18 +85,26 @@ export default {
           symbol: 'circle',
           lineStyle: {
             width: 1,
+            color: this.colors[0]
           },
+          itemStyle: {
+            color: this.colors[0]
+          }
         }]
       }
       if(valueMap instanceof  Object) {
-        return Object.keys(valueMap).map(i => ({
+        return Object.keys(valueMap).map((i,index) => ({
           data: valueMap[i],
           type: 'line',
           symbolSize: 6,
           symbol: 'circle',
           lineStyle: {
             width: 1,
+            color: this.colors[index]
           },
+          itemStyle: {
+            color: this.colors[index]
+          }
         }))
       }
     },
@@ -124,7 +142,6 @@ export default {
           },
           axisLine: {
             lineStyle: {
-              type: 'dashed',
               color: '#e8ecef',
             },
           },
@@ -132,8 +149,24 @@ export default {
         yAxis: {
           type: 'value',
           splitLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          },
+          name: this.unit,
+          nameTextStyle: {
+            color: '#fff'
+          },
+          offset: -10,
+          nameGap: 8, // 名字位置
+          axisLine: {
+            show: true,
             lineStyle: {
-              type: 'dashed',
+              color: '#e8ecef',
             },
           },
         },

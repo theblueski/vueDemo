@@ -1,11 +1,18 @@
 <template>
   <div id="app">
+    <div style="width: 100%;height: 100%;">
+      <LinesChart
+          unit="元"
+          :colors="['red', 'yellow']"
+          :data="lineData"/>
+    </div>
 <!--    <div class="infoWrapper">-->
 <!--      <DashBoard unit="个" :data="40"/>-->
 <!--    </div>-->
-    <div style="width: 600px;height: 400px;">
-      <BarsChart :vertical="true" unit="元" :colors="['red', 'pink']" :data="lineData" />
-    </div>
+<!--    <div style="width: 600px;height: 600px;background: #000;">-->
+<!--&lt;!&ndash;      <BarsChart :vertical="true" unit="元" :colors="['red', 'pink']" :data="lineData" />&ndash;&gt;-->
+<!--      <RadarChart :data="radarData" :indicator="indicator"/>-->
+<!--    </div>-->
 <!--    <div class="linerLine"></div>-->
 <!--    <div class="noover"></div>-->
 <!--    <div class="outer ">-->
@@ -16,17 +23,40 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import { DashBoard, LinesChart, BarsChart } from './components/charts'
+import {DashBoard, LinesChart, BarsChart, RadarChart} from './components/charts'
 export default {
   name: 'app',
   components: {
     // HelloWorld
     DashBoard,
     LinesChart,
-    BarsChart
+    BarsChart,
+    RadarChart
   },
   data() {
     return {
+      indicator: [
+        { name: 'Sales', max: 100 },
+        { name: 'Administration', max: 100 },
+        { name: 'Information Technology', max: 100 },
+        { name: 'Customer Support', max: 100 },
+        { name: 'Development', max: 100 },
+        { name: 'Marketing', max: 100 }
+      ],
+      radarData1: {
+        'ser1': [80, 90, 70,60,80, 96],
+        'ser2': [60, 40, 80, 40, 50, 30]
+      },
+      radarData: [
+        {
+          name: 'ser1',
+          value: [80, 90, 70,60,80, 96]
+        },
+        {
+          name: 'ser2',
+          value: [60, 40, 80, 40, 50, 30]
+        }
+      ],
       option: {
         title: {
           text: 'Echarts 入门示例'
