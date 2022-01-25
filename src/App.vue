@@ -1,11 +1,29 @@
 <template>
   <div id="app">
-    <div style="width: 100%;height: 100%;">
-      <LinesChart
-          unit="元"
-          :colors="['red', 'yellow']"
-          :data="lineData"/>
+    <div class="left-area">
+      <div class="pic-area">
+          <div class="top-dot-area">
+            <div class="dot">
+              <div class="line"></div>
+            </div>
+            <div class="dot">
+              <div class="line"></div>
+            </div>
+          </div>
+      </div>
+      <div class="content-area">
+          <div class="bottom-dot-area">
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+      </div>
     </div>
+<!--    <div style="width: 100%;height: 100%;">-->
+<!--      <LinesChart-->
+<!--          unit="元"-->
+<!--          :colors="['red', 'yellow']"-->
+<!--          :data="lineData"/>-->
+<!--    </div>-->
 <!--    <div class="infoWrapper">-->
 <!--      <DashBoard unit="个" :data="40"/>-->
 <!--    </div>-->
@@ -155,9 +173,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  width: 60%;
-  height: 300px;
+  width: 100%;
+  height: 100vh;
+  background: #333;
+  position: relative;
 }
 .linerLine {
   width: 200px;
@@ -225,5 +244,83 @@ div::-webkit-scrollbar-button {
 .infoWrapper {
   width: 90px;
   height: 90px;
+}
+</style>
+<style lang="less">
+.left-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: pink;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .pic-area {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 16px;
+    background: yellow;
+    .top-dot-area {
+      z-index: 100;
+      position: absolute;
+      width: 200px;
+      transform: translateX(-50%);
+      left: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      bottom: 20px;
+      .dot {
+        position: relative;
+        .line {
+          position: absolute;
+          width: 2px;
+          height: 65px;
+          background: violet;
+          top: 42px;
+          left: 50%;
+          transform: translateX(-50%);
+          &::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-top-color: red;
+          }
+        }
+      }
+    }
+  }
+  .content-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: blue;
+    .bottom-dot-area {
+      position: absolute;
+      width: 200px;
+      top: 40px;
+      transform: translateX(-50%);
+      left: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background: #333;
+  }
 }
 </style>

@@ -11,6 +11,7 @@
     "@antv/g6": "^4.3.11",
     "core-js": "^2.6.5",
     "echarts": "^5.2.2",
+    "less": "^4.1.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {
